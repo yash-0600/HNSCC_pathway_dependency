@@ -16,14 +16,29 @@ A research notebook for modeling pathway dependencies in head and neck squamous 
 │   ├── processed/             # Externally prepared inputs; not produced here
 │   └── reference/
 │       └── duplicates/        # Preserved duplicate source files
-└── results/
+└── results/                   # Created locally by the notebook; not uploaded
     ├── Figures_Main/
     └── Figures_Supplementary/
 ```
 
-All generated CSVs, pickles/models, text summaries, PNGs, and workbooks belong under `results/`, including generated GDSC matrices and TCGA/GSE pathway scores and predictions. `data/processed/` is reserved for the five externally prepared inputs listed below, not notebook outputs. Data and results contents are ignored by Git by default; directory `.gitkeep` files can be tracked.
+All generated CSVs, pickles/models, text summaries, PNGs, and workbooks belong under `results/`, including generated GDSC matrices and TCGA/GSE pathway scores and predictions. `data/processed/` is reserved for the five externally prepared inputs listed below, not notebook outputs. The supplied `data/` directory is versioned; generated results, environments, and checkpoints are excluded from Git.
 
 ## Setup and launch
+
+### Download the repository and datasets
+
+Install [Git LFS](https://git-lfs.com/) before cloning (on macOS with Homebrew: `brew install git-lfs`), then run:
+
+```bash
+git lfs install
+git clone https://github.com/yash-0600/HNSCC_pathway_dependency.git
+cd HNSCC_pathway_dependency
+git lfs pull
+```
+
+The supplied data occupy approximately 602 MB. `data/raw/GSE103322_data.txt` and `data/raw/TCGA HNSC HiSeqV2.txt` are stored in Git LFS; the remaining data files use ordinary Git. Prefer cloning and `git lfs pull` over GitHub's **Download ZIP**: repository-generated archives may contain LFS pointers instead of the actual matrices. A file beginning with `version https://git-lfs.github.com/spec/v1` is a pointer, not usable expression data. LFS downloads depend on the repository owner's GitHub storage/bandwidth allowance.
+
+### Install Python dependencies
 
 Python **3.11 is a recommended setup target**, not a tested compatibility guarantee. From the repository root, create a new environment rather than copying the existing local `jupyter_env/`:
 
@@ -40,7 +55,7 @@ Run from the root: notebook paths are root-relative. The existing `jupyter_env/`
 
 ## Input inventory
 
-“Available” describes the supplied local source files after organization, **not files included in a code-only GitHub checkout or ZIP**. Obtain missing files from their legitimate sources and respect access/redistribution terms. Do not substitute similarly named files without checking cohort, release, identifiers, orientation, and preprocessing.
+“Available” describes the supplied source files included in this repository's `data/` directory; the two LFS-managed matrices require `git lfs pull`. These files are intentionally absent from the code-only ZIP example below. Obtain missing files from their legitimate sources and respect access/redistribution terms. Do not substitute similarly named files without checking cohort, release, identifiers, orientation, and preprocessing.
 
 ### Raw inputs (`data/raw/`)
 
@@ -139,9 +154,9 @@ These are packaging and path-resolution checks, not an end-to-end analysis run, 
 
 ## GitHub and archive publication
 
-The default `.gitignore` excludes dataset and result contents, environments (`jupyter_env/`, `.venv/`, etc.), checkpoints, Python caches, and macOS metadata. Source datasets therefore remain **untracked by default**. Ignore rules do not remove files already tracked in another Git history; review the staged contents before publishing. Notebook cell outputs can also contain data or sensitive identifiers: review them before sharing.
+The repository publishes the three main analysis files and `data/`, plus `.gitattributes` and `.gitignore` for large-file handling and safe exclusions. The `.gitignore` excludes generated results, environments (`jupyter_env/`, `.venv/`, etc.), checkpoints, Python caches, and macOS metadata; it does **not** exclude source data. Ignore rules do not remove files already tracked in another Git history. Notebook cell outputs can also contain data or sensitive identifiers: review them before sharing.
 
-GitHub blocks ordinary Git files larger than **100 MiB**; the single-cell input exceeds that limit. For authorized data sharing, use an external data archive or deliberately configure Git LFS (including host storage/bandwidth limits). This repository does **not** configure LFS. Verify redistribution rights, dataset licenses, consent/access restrictions, and any clinical-data privacy obligations yourself before uploading data or results. A filename or local possession is not permission to redistribute.
+GitHub blocks ordinary Git files larger than **100 MiB**; the single-cell input exceeds that limit. This repository configures Git LFS for the single-cell and bulk TCGA expression matrices in `.gitattributes`. Contributors must install Git LFS before adding or changing those files; pushing through Git LFS uploads their actual contents separately from Git pointer records. Verify redistribution rights, dataset licenses, consent/access restrictions, and clinical-data privacy obligations before publishing additional data. A filename or local possession is not permission to redistribute.
 
 ### ZIP examples (macOS/Linux)
 
@@ -167,7 +182,7 @@ zip -r ../hnscc-with-data.zip . \
      '.env' '.env.*'
 ```
 
-The data-inclusive example includes whatever actually exists in `data/` and `results/`, including reference duplicates; it cannot supply missing inputs and may be large. ZIP does not apply `.gitignore`, which is why exclusions are explicit. Review archive contents and any additional local secrets before distributing.
+The data-inclusive example includes whatever actually exists in `data/` and `results/`, including reference duplicates; it cannot supply missing inputs and may be large. Run `git lfs pull` before creating a data-inclusive ZIP from a fresh clone so that the two matrices contain actual data rather than LFS pointers. ZIP does not apply `.gitignore`, which is why exclusions are explicit. Review archive contents and any additional local secrets before distributing.
 
 ## Citation and licensing
 

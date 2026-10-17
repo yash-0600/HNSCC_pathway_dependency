@@ -1,0 +1,48 @@
+# Generated analysis artifacts; source data are intentionally versioned.
+results/**
+!results/**/
+!results/**/.gitkeep
+
+# Python environments and local configuration.
+jupyter_env/
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+.python-version
+
+# Python caches, builds, and package metadata.
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter and local editor state.
+.ipynb_checkpoints/
+.ipython/
+.vscode/
+.idea/
+*~
+*.swp
+*.swo
+
+# macOS metadata.
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100/
+.Trashes/
