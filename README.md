@@ -11,6 +11,7 @@ A research notebook for modeling pathway dependencies in head and neck squamous 
 ├── analysis_notebook.ipynb     # Main analysis; launch from repository root
 ├── requirements.txt           # Unpinned Python dependencies
 ├── README.md
+├── DATA_DOWNLOAD.md           # RNA CSV download link, size, and checksum
 ├── data/
 │   ├── raw/                   # Original inputs with notebook-compatible names
 │   ├── processed/             # Externally prepared inputs; not produced here
@@ -36,7 +37,9 @@ cd HNSCC_pathway_dependency
 git lfs pull
 ```
 
-The data included in Git/Git LFS occupy approximately 602 MB. `data/raw/GSE103322_data.txt` and `data/raw/TCGA HNSC HiSeqV2.txt` are stored in Git LFS; the other included data files use ordinary Git. The separate 6,101,790,120-byte `RNA_Seq_All_TPM.csv` will be distributed through Google Drive; its upload is pending. See [DATA_DOWNLOAD.md](DATA_DOWNLOAD.md) for its destination and verification instructions. Prefer cloning and `git lfs pull` over GitHub's **Download ZIP**: repository-generated archives may contain LFS pointers instead of the actual matrices. A file beginning with `version https://git-lfs.github.com/spec/v1` is a pointer, not usable expression data. LFS downloads depend on the repository owner's GitHub storage/bandwidth allowance.
+The data included in Git/Git LFS occupy approximately 602 MB. `data/raw/GSE103322_data.txt` and `data/raw/TCGA HNSC HiSeqV2.txt` are stored in Git LFS; the other included data files use ordinary Git. Prefer cloning and `git lfs pull` over GitHub's **Download ZIP**: repository-generated archives may contain LFS pointers instead of the actual matrices. A file beginning with `version https://git-lfs.github.com/spec/v1` is a pointer, not usable expression data. LFS downloads depend on the repository owner's GitHub storage/bandwidth allowance.
+
+Download the separate **6.10 GB** [RNA_Seq_All_TPM.csv from Google Drive](https://drive.google.com/file/d/1QSCQ4nfapLh-337rl7_9Csk7JkEHr4_x/view?usp=sharing) and place it at `data/raw/RNA_Seq_All_TPM.csv`. It is not included in a clone, `git lfs pull`, or GitHub's ZIP download. See [DATA_DOWNLOAD.md](DATA_DOWNLOAD.md) for the exact size and SHA-256 verification instructions. The combined supplied data occupy approximately 6.70 GB after this download.
 
 ### Install Python dependencies
 
@@ -65,7 +68,7 @@ Run from the root: notebook paths are root-relative. The existing `jupyter_env/`
 | `GDSC2_fitted_dose_response_15Oct19.xlsx` | Available; GDSC2 dose-response source, compatibility filename only |
 | `screened_compounds_rel_8.1.csv` | Available; compound annotations originally labeled v8.5 |
 | `Human MSigDB Hs Symbols v2026.1.gmt` | Available; pathway gene sets |
-| `RNA_Seq_All_TPM.csv` | Present locally; separate Google Drive upload pending; see [download instructions](DATA_DOWNLOAD.md) |
+| `RNA_Seq_All_TPM.csv` | Available separately through [Google Drive](https://drive.google.com/file/d/1QSCQ4nfapLh-337rl7_9Csk7JkEHr4_x/view?usp=sharing); save to `data/raw/`; see [verification instructions](DATA_DOWNLOAD.md) |
 | `phenotype.txt` | Available; TCGA phenotype/clinical annotations |
 | `HNSC_mc3_gene_level.txt` | Available; gene-level mutation data |
 | `HNSC_mc3.txt` | **Missing**; separate mutation input, not replaced by the gene-level file |

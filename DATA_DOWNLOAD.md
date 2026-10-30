@@ -2,7 +2,9 @@
 
 `RNA_Seq_All_TPM.csv` is distributed separately through Google Drive because it exceeds GitHub's per-file Git LFS limits. The original CSV remains unchanged.
 
-**Download status: upload in progress.** The sharing link will be added in a subsequent commit. This dataset is not yet downloadable from this repository.
+[Download RNA_Seq_All_TPM.csv from Google Drive](https://drive.google.com/file/d/1QSCQ4nfapLh-337rl7_9Csk7JkEHr4_x/view?usp=sharing).
+
+Open the link and use Google Drive's **Download** button. Download the original CSV, then move it into `data/raw/` without renaming it. The link supports access without signing in; a preview is not required to download the file.
 
 After downloading, place the file at this exact path relative to the repository root:
 

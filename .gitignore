@@ -1,6 +1,9 @@
 # Generated analysis outputs remain local.
 /results/
 
+# Companion HTML is excluded from publication.
+/analysis_explained.html
+
 # Download this oversized dataset separately; see DATA_DOWNLOAD.md.
 /data/raw/RNA_Seq_All_TPM.csv
 
