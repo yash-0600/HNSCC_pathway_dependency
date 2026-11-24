@@ -1,0 +1,36 @@
+# Normalize source and structured text to LF without rewriting binary datasets.
+* text=auto
+*.ipynb text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf
+*.tsv text eol=lf
+*.gmt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.sh text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Do not normalize binary data, models, figures, or archives.
+*.xlsx binary
+*.xls binary
+*.pdf binary
+*.pkl binary
+*.pickle binary
+*.joblib binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.gz binary
+*.zip binary
+
+# Preserve source dataset bytes; store large expression matrices in Git LFS.
+data/** -text
+data/raw/GSE103322_data.txt filter=lfs diff=lfs merge=lfs -text
+"data/raw/TCGA HNSC HiSeqV2.txt" filter=lfs diff=lfs merge=lfs -text
